@@ -81,14 +81,14 @@ finalScore(inning, 9) might return:
 
 function finalScore(inninga, inningh, ammount){
   const gameScore = {
-    Away: (inninga * ammount),
-    Home: (inningh * ammount),
+    Away: (inninga() * ammount),
+    Home: (inningh() * ammount),
   }
 
   return gameScore;
 }
 
-console.log(finalScore(inning(),inning(), 9));
+console.log(finalScore(inning,inning, 9));
 
 /* Task 4: 
 
@@ -111,8 +111,18 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(finalscore, inning, number) {
+  let finalHome = 0;
+  let finalAway = 0; 
+  for (i = 0; i < number; i++){
+    let result = finalscore(inning, inning, 9);
+    finalHome += result.Home;
+    finalAway += result.Away;
+    console.log((i+1) + ' inning: ' + result.Away + ' - ' + result.Home);
+  }
+  console.log('Final Score: ' + finalAway + ' - ' + finalHome);
 }
+
+scoreboard(finalScore, inning, 9);
 
 
